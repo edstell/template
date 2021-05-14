@@ -2,7 +2,7 @@
 CLI wrapper around Go's templating library.
 
 ## Usage
-`template JSON_FILE SOURCE_FILE
+`template JSON_FILE SOURCE_FILE`
 
 __*JSON_FILE*__		-	JSON formatted data which should be inserted into the template.
 __*SOURCE_FILE*__	-	Path to the file which should have data inserted into it.
