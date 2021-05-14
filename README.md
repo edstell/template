@@ -37,4 +37,5 @@ The templating library used is very powerful, allowing conditional templating of
 Full documentation of what's possible can be found [here](https://curtisvermeeren.github.io/2017/09/14/Golang-Templates-Cheatsheet).
 
 ## Custom functions
-Because this is a pre-built CLI you won't be able to provide your own custom functions, some useful ones have been provided and are documented below.
+The template library supports providing custom functions to template more complex data. Because this is a command line tool, we 
+can't make use of the custom fuctions, however it's easy enough to add some pre-defined ones.
