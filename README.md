@@ -17,7 +17,7 @@ Given a 'data.json' file containing:
 ```
 And a 'source.txt' file containing:
 ```
-template inserted '{{.key}}' into this file.
+template inserted '{{.key}}' into this sentence.
 ```
 Calling:
 ```
@@ -25,7 +25,7 @@ Calling:
 ```
 Outputs:
 ```
-template inserted 'value' into this file.
+template inserted 'value' into this sentence.
 ```
 You can write the output data to a file like so:
 ```
