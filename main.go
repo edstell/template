@@ -3,12 +3,13 @@ package main
 import (
 	"encoding/json"
 	"errors"
+	"io/ioutil"
 	"os"
 	"text/template"
 )
 
 func usage() string {
-	return "template: JSON_FILE SOURCE_FILE"
+	return "template: JSON_FILE [SOURCE_FILE]"
 }
 
 func exit(s string) {
@@ -18,15 +19,26 @@ func exit(s string) {
 
 func main() {
 	args := os.Args[1:]
-	if len(args) < 2 {
+	if len(args) < 1 {
 		exit(usage())
 	}
 	data, err := unmarshalJSON(args[0])
 	if err != nil {
 		exit(err.Error())
 	}
-	sourcePath := args[1]
-	t, err := template.New(sourcePath).ParseFiles(sourcePath)
+	f := os.Stdin
+	if len(args) >= 2 {
+		f, err = os.Open(args[1])
+		if err != nil {
+			exit(err.Error())
+		}
+		defer f.Close()
+	}
+	b, err := ioutil.ReadAll(f)
+	if err != nil {
+		exit(err.Error())
+	}
+	t, err := template.New("").Parse(string(b))
 	if err != nil {
 		exit(err.Error())
 	}
