@@ -2,18 +2,39 @@
 CLI wrapper around Go's templating library.
 
 ## Usage
-`template JSON_FILE [--source=FILE] [--output=FILE]`
+`template JSON_FILE SOURCE_FILE
 
-__*JSON_FILE*__	-	JSON formatted data which should be inserted into the template.
-__*source*__	-	Path to the file which should have data inserted into it.
-__*out*__	-	Path to the file which templated data should be written to.
+__*JSON_FILE*__		-	JSON formatted data which should be inserted into the template.
+__*SOURCE_FILE*__	-	Path to the file which should have data inserted into it.
 
-If no source file is provided, source data is read from `stdin`.
-
-If no output file is provided, output data is written to `stdout`.
+Output is written to stdout.
 
 ## Examples
-This is a simple command line wrapper around Go's templating library, there are lots of great resources for using the template syntax - [here's](https://curtisvermeeren.github.io/2017/09/14/Golang-Templates-Cheatsheet) a good cheatsheet to get you started.
+Given a 'data.json' file containing:
+```
+{"key":"value"}
+```
+And a 'source.txt' file containing:
+```
+template inserted '{{.key}}' into this file.
+```
+Calling:
+```
+./template data.json source.txt
+```
+Outputs:
+```
+template inserted 'value' into this file.
+```
+You can write the output data to a file like so:
+```
+$ touch output.txt -- create the output file
+$ ./template data.json source.txt > output.txt
+```
+
+The templating library used is very powerful, allowing conditional templating of values, as well as iterating over lists etc etc.
+
+Full documentation of what's possible can be found [here](https://curtisvermeeren.github.io/2017/09/14/Golang-Templates-Cheatsheet).
 
 ## Custom functions
 Because this is a pre-built CLI you won't be able to provide your own custom functions, some useful ones have been provided and are documented below.
